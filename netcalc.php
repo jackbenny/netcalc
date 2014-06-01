@@ -59,6 +59,11 @@ function print_netmask($number)
     // Put it together in a binary string
     $binary = "$ones$zeros";
 
+    // Make it dotted binary format
+    $dotted_binary = substr_replace($binary, ".", 8, 0);
+    $dotted_binary = substr_replace($dotted_binary, ".", 17, 0);
+    $dotted_binary = substr_replace($dotted_binary, ".", 26, 0);
+
     // Make it dotted decimal format
     $firstOctet = base_convert(substr($binary, 0, 8), 2, 10);
     $secondOctet = base_convert(substr($binary, 8, 8), 2, 10);
@@ -69,9 +74,8 @@ function print_netmask($number)
     print "Netmask\n" ;
     print "-------\n";
     print "In slash notation: $mask\n";
-    print "In binary: ";
-    print $binary . "\n";
-    print "In dotted decimal: $firstOctet.$secondOctet.$thirdOctet.$forthOctet";
+    print "In dotted decimal: $firstOctet.$secondOctet.$thirdOctet.$forthOctet\n";
+    print "In dotted binary: $dotted_binary";
     print "\n\n";
 }
 
