@@ -56,8 +56,22 @@ function print_netmask($number)
     }
     unset($i);
 
-    // Put it together in a binary string
-    $binary = "$ones$zeros";
+    // Special cases when netmask is 0 or 32
+    if ($mask == 0)
+    {
+        // If the network mask is 0, then just put 32 zeros in the string
+        $binary = "00000000000000000000000000000000";
+    }
+    elseif ($mask == 32)
+    {
+        // If the network mask is 32, then just put 32 ones in the string
+        $binary = "11111111111111111111111111111111";
+    }
+    else
+    {
+        // Else put the ones and zeros together in a binary string
+        $binary = "$ones$zeros";
+    }
 
     // Make it dotted binary format
     $dotted_binary = substr_replace($binary, ".", 8, 0);
@@ -85,6 +99,8 @@ function print_values($value)
     $base=32-$value;
     $netsize=pow(2, $base);
     $hosts=$netsize-2;
+
+    // We don't want negative values
     if ($hosts < 0)
     {
         $hosts = 0;
