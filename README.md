@@ -5,6 +5,10 @@ will get with a 26 bit netmask, simply run the script as below:
 
     php netcalc.php 26
 
+Or you `chmod +x netcalc.php` and run it as below:
+
+    ./netcalc.php 26
+
 The above command will give you the following outut:
 
     Netmask
